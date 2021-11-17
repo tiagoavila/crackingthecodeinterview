@@ -20,6 +20,8 @@ def check_permutation(string1, string2):
 def main():
     print("god Is permutation of dog?", check_permutation("god", "dog"))
     print("gody Is permutation dog?", check_permutation("gody", "dog"))
+    print("god Is permutation cog?", check_permutation("god", "cog"))
+    print("God Is permutation god?", check_permutation("God", "god"))
 
 
 if __name__ == "__main__":
