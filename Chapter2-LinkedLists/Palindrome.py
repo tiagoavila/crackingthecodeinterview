@@ -2,6 +2,11 @@ from Classes.LinkedList import LinkedList, Node
 
 
 def is_palindrome(head: Node):
+    """
+    Checks if a linked list is a palindrome by reversing and cloning the linked list and then comparing both
+    :param head:
+    :return:
+    """
     head_reversed_linked_list = reverse_and_clone(head)
     return is_equal(head, head_reversed_linked_list)
 
