@@ -1,29 +1,28 @@
 import sys
-from queue import LifoQueue
 
 
 class StackWithMinimum:
     def __init__(self):
-        self.valuesStack = []
-        self.minimumValuesStack = []
+        self.__valuesStack = []
+        self.__minimumValuesStack = []
 
     def __repr__(self):
-        return " - ".join([str(value) for value in self.valuesStack])
+        return " - ".join([str(value) for value in self.__valuesStack])
 
     def push(self, value: int):
-        self.valuesStack.append(value)
+        self.__valuesStack.append(value)
         if value < self.peek_minimum_value():
-            self.minimumValuesStack.append(value)
+            self.__minimumValuesStack.append(value)
 
     def pop(self):
-        value = self.valuesStack.pop()
+        value = self.__valuesStack.pop()
         if value == self.peek_minimum_value():
-            self.minimumValuesStack.pop()
+            self.__minimumValuesStack.pop()
 
         return value
 
     def peek_minimum_value(self):
-        if len(self.minimumValuesStack) > 0:
-            return self.minimumValuesStack[-1]
+        if len(self.__minimumValuesStack) > 0:
+            return self.__minimumValuesStack[-1]
         else:
             return sys.maxsize
