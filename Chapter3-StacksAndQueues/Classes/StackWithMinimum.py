@@ -8,7 +8,7 @@ class StackWithMinimum:
         self.minimumValuesStack = []
 
     def __repr__(self):
-        return " -> ".join([str(value) for value in self.valuesStack])
+        return " - ".join([str(value) for value in self.valuesStack])
 
     def push(self, value: int):
         self.valuesStack.append(value)
