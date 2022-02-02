@@ -1,6 +1,6 @@
-from Classes.Node import Node
-from Classes.Graph import Graph
-from Enums.StateEnum import StateEnum
+from Classes.node import Node
+from Classes.graph import Graph
+from Enums.state_enum import StateEnum
 
 
 def check_route_between_two_nodes(graph: Graph, start: Node, end: Node):
