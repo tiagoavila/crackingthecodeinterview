@@ -58,7 +58,7 @@ def main():
     print("Is the a route between NodeA and NodeB?", check_route_between_two_nodes(graph, node_a, node_b))
     print("Is the a route between NodeA and NodeE?", check_route_between_two_nodes(graph, node_a, node_e))
     print("Is the a route between NodeC and NodeF?", check_route_between_two_nodes(graph, node_c, node_f))
-    print("Is the a route between NodeB and NodeF?", check_route_between_two_nodes(graph, node_b, node_f))
+    print("Is the a route between NodeB and NodeF?", check_route_between_two_nodes(graph, node_b, node_f)) 
 
 
 if __name__ == "__main__":
