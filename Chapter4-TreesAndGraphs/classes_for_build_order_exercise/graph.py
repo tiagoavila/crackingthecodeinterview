@@ -12,7 +12,7 @@ class Graph:
             self.__nodes.append(node)
             self.__map[name] = node
 
-        return map[name]
+        return self.__map[name]
 
     def add_edge(self, start_name, end_name):
         start = self.get_or_create_node(start_name)

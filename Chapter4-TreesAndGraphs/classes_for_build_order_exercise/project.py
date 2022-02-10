@@ -15,10 +15,10 @@ class Project:
         return self.__name
 
     def increment_dependencies(self):
-        ++self.__dependencies
+        self.__dependencies += 1
 
     def decrement_dependencies(self):
-        --self.__dependencies
+        self.__dependencies -= 1
 
     def get_children(self):
         return self.__children
