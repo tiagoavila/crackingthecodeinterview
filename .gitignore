@@ -132,3 +132,9 @@ dmypy.json
 *.exe
 *.pdb
 Chapter7-ObjectOrientedDesign/DeckOfCardsBlackJack/obj
+Chapter7-ObjectOrientedDesign/.vs/Chapter7-ObjectOrientedDesign/DesignTimeBuild
+Chapter7-ObjectOrientedDesign/.vs/Chapter7-ObjectOrientedDesign/v17
+*/Othello/bin
+*obj
+Chapter7-ObjectOrientedDesign/.vs
+*.user
