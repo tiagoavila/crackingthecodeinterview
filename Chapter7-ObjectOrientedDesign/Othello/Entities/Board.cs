@@ -1,9 +1,5 @@
 ﻿using Othello.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Othello.Entities
 {
@@ -126,17 +122,7 @@ namespace Othello.Entities
 
                 for (int column = 0; column < NUMBER_OF_COLUMNS; column++)
                 {
-                    string pieceColorAsString = "- ";
-                    if (Pieces[row, column].Color == PieceColorEnum.Black)
-                    {
-                        pieceColorAsString = "B ";
-                    }
-                    else if (Pieces[row, column].Color == PieceColorEnum.White)
-                    {
-                        pieceColorAsString = "W ";
-                    }
-
-                    boardPieces.Append(pieceColorAsString);
+                    boardPieces.Append(Pieces[row, column].Color.ToShortString());
                 }
             }
 
