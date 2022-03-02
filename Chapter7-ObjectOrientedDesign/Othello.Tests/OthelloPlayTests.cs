@@ -28,27 +28,27 @@ namespace Othello.Tests
         [Test]
         public void CantInsertPieceInASpotOnlySurroundedByEmptySpots()
         {
-            Assert.IsFalse(_board.PlaceColor(0, 0, PieceColorEnum.Black));
-            Assert.IsFalse(_board.PlaceColor(1, 1, PieceColorEnum.Black));
-            Assert.IsFalse(_board.PlaceColor(1, 1, PieceColorEnum.White));
+            Assert.IsFalse(_board.PlacePiece(0, 0, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(1, 1, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(1, 1, PieceColorEnum.White));
         }
 
         [Test]
         public void CantInsertBlackPieceOnTheSideOfAnotherOne()
         {
-            Assert.IsFalse(_board.PlaceColor(3, 2, PieceColorEnum.Black));
-            Assert.IsFalse(_board.PlaceColor(2, 3, PieceColorEnum.Black));
-            Assert.IsFalse(_board.PlaceColor(5, 4, PieceColorEnum.Black));
-            Assert.IsFalse(_board.PlaceColor(4, 5, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(3, 2, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(2, 3, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(5, 4, PieceColorEnum.Black));
+            Assert.IsFalse(_board.PlacePiece(4, 5, PieceColorEnum.Black));
         }
 
         [Test]
         public void CantInsertWhitePieceOnTheSideOfAnotherOne()
         {
-            Assert.IsFalse(_board.PlaceColor(2, 4, PieceColorEnum.White));
-            Assert.IsFalse(_board.PlaceColor(4, 2, PieceColorEnum.White));
-            Assert.IsFalse(_board.PlaceColor(5, 3, PieceColorEnum.White));
-            Assert.IsFalse(_board.PlaceColor(3, 5, PieceColorEnum.White));
+            Assert.IsFalse(_board.PlacePiece(2, 4, PieceColorEnum.White));
+            Assert.IsFalse(_board.PlacePiece(4, 2, PieceColorEnum.White));
+            Assert.IsFalse(_board.PlacePiece(5, 3, PieceColorEnum.White));
+            Assert.IsFalse(_board.PlacePiece(3, 5, PieceColorEnum.White));
         }
 
         [TestCase(5, 3, PieceColorEnum.Black, "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B W - - - | - - - B B - - - | - - - B - - - - | - - - - - - - - | - - - - - - - - ")]
@@ -61,7 +61,7 @@ namespace Othello.Tests
         [TestCase(4, 5, PieceColorEnum.White, "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B W - - - | - - - W W W - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ")]
         public void AllPossibleInitialMovementsSetTheBoardCorrectly(int row, int column, PieceColorEnum color, string expectedBoardString)
         {
-            _board.PlaceColor(row, column, color);
+            _board.PlacePiece(row, column, color);
 
             Assert.AreEqual(expectedBoardString, _board.GetBoardPiecesAsString());
 
@@ -71,9 +71,9 @@ namespace Othello.Tests
         [Test]
         public void PossibleSetOfMovementsSetTheBoardCorrectly()
         {
-            _board.PlaceColor(3, 5, PieceColorEnum.Black);
-            _board.PlaceColor(2, 3, PieceColorEnum.White);
-            _board.PlaceColor(3, 2, PieceColorEnum.Black);
+            _board.PlacePiece(3, 5, PieceColorEnum.Black);
+            _board.PlacePiece(2, 3, PieceColorEnum.White);
+            _board.PlacePiece(3, 2, PieceColorEnum.Black);
 
             string expectedBoardString = "- - - - - - - - | - - - - - - - - | - - - W - - - - | - - B B B B - - | - - - W B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ";
             Assert.AreEqual(expectedBoardString, _board.GetBoardPiecesAsString());

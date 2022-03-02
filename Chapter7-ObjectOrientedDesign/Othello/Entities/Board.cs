@@ -47,7 +47,14 @@ namespace Othello.Entities
             blackCount = 0;
         }
 
-        public bool PlaceColor(int row, int column, PieceColorEnum color)
+        /// <summary>
+        /// Attempts to insert a piece in the row and column defined, using the informed color
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <param name="color"></param>
+        /// <returns>True if the movement was valid and the piece was placed, otherwise returns False</returns>
+        public bool PlacePiece(int row, int column, PieceColorEnum color)
         {
             if (Pieces[row, column].Color != PieceColorEnum.Empty)
             {
