@@ -4,11 +4,11 @@ namespace Othello.Entities
 {
     public class Player
     {
-        public Player(EnumPieceColor color)
+        public Player(PieceColorEnum color)
         {
             Color = color;
         }
 
-        public EnumPieceColor Color { get; private set; }
+        public PieceColorEnum Color { get; private set; }
     }
 }

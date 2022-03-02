@@ -1,6 +1,6 @@
 ﻿namespace Othello.Enums
 {
-    public enum EnumPieceColor
+    public enum PieceColorEnum
     {
         Empty,
         White,
