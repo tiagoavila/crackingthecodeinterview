@@ -55,6 +55,10 @@ namespace Othello.Entities
             }
 
             // check neighboors, if no neighboor has a color it won't allow to place the piece
+            if (!AreThereAnyNeighboorWithColors(row, column))
+            {
+                return false;
+            }
 
             // also need to check for a valid movement. If I'm player of black pieces,
             // I can only place a piece in a spot where there are white pieces surrounded by black pieces including the spot I want to place the piece
@@ -62,6 +66,54 @@ namespace Othello.Entities
             Pieces[row, column].SetColor(color);
 
             // logic to handle switch of colors
+
+            return false;
+        }
+
+        /// <summary>
+        /// It checks the top, bottom, left and right neighboors checking if any of them has a color
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private bool AreThereAnyNeighboorWithColors(int row, int column)
+        {
+            Piece? topNeighboor = row > 0 ? Pieces[row - 1, column] : null;
+            Piece? bottomNeighboor = row < NUMBER_OF_ROWS ? Pieces[row + 1, column] : null;
+            Piece? leftNeighboor = column > 0 ? Pieces[row, column - 1] : null;
+            Piece? rightNeighboor = column < NUMBER_OF_COLUMNS ? Pieces[row, column + 1] : null;
+
+            if (topNeighboor != null)
+            {
+                if (topNeighboor.Color != EnumPieceColor.Empty)
+                {
+                    return true;
+                }
+            }
+
+            if (bottomNeighboor != null)
+            {
+                if (bottomNeighboor.Color != EnumPieceColor.Empty)
+                {
+                    return true;
+                }
+            }
+
+            if (leftNeighboor != null)
+            {
+                if (leftNeighboor.Color != EnumPieceColor.Empty)
+                {
+                    return true;
+                }
+            }
+
+            if (rightNeighboor != null)
+            {
+                if (rightNeighboor.Color != EnumPieceColor.Empty)
+                {
+                    return true;
+                }
+            }
 
             return false;
         }
