@@ -77,8 +77,8 @@
 
         /// <summary>
         /// Get the limit index that a method can go for the row and column based on the current direction.
-        /// Example A: If direction is Top, the limit is row = 0
-        /// Example B: If direction is Right, the limit is number of columns of the board
+        /// Example A: If direction is Top, the limit is row = 0.
+        /// Example B: If direction is Right, the limit is the number of columns of the board
         /// </summary>
         /// <param name="direction"></param>
         /// <param name="numberOfRows"></param>
