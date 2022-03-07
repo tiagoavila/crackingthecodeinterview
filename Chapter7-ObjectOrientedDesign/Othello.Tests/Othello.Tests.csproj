@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Othello\Othello.csproj" />
+    <ProjectReference Include="..\Othello\Othello.Core.csproj" />
   </ItemGroup>
 
 </Project>

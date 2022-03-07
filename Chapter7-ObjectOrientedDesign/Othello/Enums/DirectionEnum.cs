@@ -54,26 +54,14 @@
         /// <param name="maxNumberOfRows"></param>
         /// <param name="maxNumberOfColumns"></param>
         /// <returns></returns>
-        public static Func<bool> GetStopCondition(this DirectionEnum direction, int row, int column, int maxNumberOfRows, int maxNumberOfColumns)
+        public static Func<bool> GetStopCondition(this DirectionEnum direction, int row, int column, int maxNumberOfRows, int maxNumberOfColumns) => direction switch
         {
-            switch (direction)
-            {
-                case DirectionEnum.Top:
-                    return () => row > 0;
-
-                case DirectionEnum.Bottom:
-                    return () => row < maxNumberOfRows;
-
-                case DirectionEnum.Left:
-                    return () => column > 0;
-
-                case DirectionEnum.Right:
-                    return () => column < maxNumberOfColumns;
-
-                default:
-                    return () => false;
-            }
-        }
+            DirectionEnum.Top => () => row > 0,
+            DirectionEnum.Bottom => () => row < maxNumberOfRows,
+            DirectionEnum.Left => () => column > 0,
+            DirectionEnum.Right => () => column < maxNumberOfColumns,
+            _ => () => false,
+        };
 
         /// <summary>
         /// Get the limit index that a method can go for the row and column based on the current direction.
@@ -97,7 +85,7 @@
                     break;
 
                 case DirectionEnum.Bottom:
-                    rowLimit = numberOfRows;
+                    rowLimit = numberOfRows - 1;
                     break;
 
                 case DirectionEnum.Left:
@@ -105,7 +93,7 @@
                     break;
 
                 case DirectionEnum.Right:
-                    columnLimit = numberOfColumns;
+                    columnLimit = numberOfColumns - 1;
                     break;
             }
         }

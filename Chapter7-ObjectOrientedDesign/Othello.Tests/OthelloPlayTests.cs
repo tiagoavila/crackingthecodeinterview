@@ -6,8 +6,16 @@ namespace Othello.Tests
 {
     public class OthelloPlayTests
     {
-        private const string expectedInitializedBoardString = "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B W - - - | - - - W B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ";
-        private Board _board = new();
+        private const string expectedInitializedBoardString = 
+            "- - - - - - - - | " +
+            "- - - - - - - - | " +
+            "- - - - - - - - | " +
+            "- - - B W - - - | " +
+            "- - - W B - - - | " +
+            "- - - - - - - - | " +
+            "- - - - - - - - | " +
+            "- - - - - - - - ";
+        private readonly Board _board = new();
 
         [SetUp]
         public void Setup()
@@ -51,7 +59,15 @@ namespace Othello.Tests
             Assert.IsFalse(_board.PlacePiece(3, 5, PieceColorEnum.White));
         }
 
-        [TestCase(5, 3, PieceColorEnum.Black, "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B W - - - | - - - B B - - - | - - - B - - - - | - - - - - - - - | - - - - - - - - ")]
+        [TestCase(5, 3, PieceColorEnum.Black, 
+            "- - - - - - - - | " +
+            "- - - - - - - - | " +
+            "- - - - - - - - | " +
+            "- - - B W - - - | " +
+            "- - - B B - - - | " +
+            "- - - B - - - - | " +
+            "- - - - - - - - | " +
+            "- - - - - - - - ")]
         [TestCase(2, 4, PieceColorEnum.Black, "- - - - - - - - | - - - - - - - - | - - - - B - - - | - - - B B - - - | - - - W B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ")]
         [TestCase(4, 2, PieceColorEnum.Black, "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B W - - - | - - B B B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ")]
         [TestCase(3, 5, PieceColorEnum.Black, "- - - - - - - - | - - - - - - - - | - - - - - - - - | - - - B B B - - | - - - W B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ")]
@@ -75,7 +91,15 @@ namespace Othello.Tests
             _board.PlacePiece(2, 3, PieceColorEnum.White);
             _board.PlacePiece(3, 2, PieceColorEnum.Black);
 
-            string expectedBoardString = "- - - - - - - - | - - - - - - - - | - - - W - - - - | - - B B B B - - | - - - W B - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - ";
+            string expectedBoardString = 
+                "- - - - - - - - | " +
+                "- - - - - - - - | " +
+                "- - - W - - - - | " +
+                "- - B B B B - - | " +
+                "- - - W B - - - | " +
+                "- - - - - - - - | " +
+                "- - - - - - - - | " +
+                "- - - - - - - - ";
             Assert.AreEqual(expectedBoardString, _board.GetBoardPiecesAsString());
         }
     }

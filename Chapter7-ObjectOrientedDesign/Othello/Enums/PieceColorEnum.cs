@@ -9,17 +9,12 @@
 
     public static class PieceColorEnumExtensions
     {
-        public static string ToShortString(this PieceColorEnum color)
+        public static string ToShortString(this PieceColorEnum color) => color switch
         {
-            switch (color)
-            {
-                case PieceColorEnum.White:
-                    return "W ";
-                case PieceColorEnum.Black:
-                    return "B ";
-                default: return "- ";
-            }
-        }
+            PieceColorEnum.White => "W ",
+            PieceColorEnum.Black => "B ",
+            _ => "- ",
+        };
 
         public static PieceColorEnum GetOppositeColor(this PieceColorEnum color)
         {
