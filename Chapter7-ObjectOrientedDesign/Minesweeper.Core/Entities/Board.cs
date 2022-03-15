@@ -42,7 +42,7 @@ namespace Minesweeper.Core.Entities
                 Cell cell = new(row, column);
                 if (index < NumberOfBombs)
                 {
-                    cell.SetCellType(CellTypeEnum.Bomb);
+                    cell.SetIsBomb();
                     CellBombs.Add(cell);
                 }
 
@@ -51,29 +51,63 @@ namespace Minesweeper.Core.Entities
 
             Random random = new();
 
-            //for (int index1 = 0; index1 < NumberOfBombs; index1++)
-            //{
-            //    int index2 = index1 + random.Next(numberOfCells - index1);
-            //    if (index1 != index2)
-            //    {
-            //        // Get cell at index1
-            //        int row1 = index1 / BoardSize;
-            //        int column1 = (index1 - row1 * BoardSize) % BoardSize;
-            //        Cell cell1 = Cells[row1, column1];
+            //Swap all the cells in the board
+            for (int index1 = 0; index1 < numberOfCells; index1++)
+            {
+                int index2 = index1 + random.Next(numberOfCells - index1);
+                if (index1 != index2)
+                {
+                    // Get cell at index1
+                    int row1 = index1 / BoardSize;
+                    int column1 = (index1 - row1 * BoardSize) % BoardSize;
+                    Cell cell1 = Cells[row1, column1];
 
-            //        // Get cell at index2
-            //        int row2 = index2 / BoardSize;
-            //        int column2 = (index2 - row2 * BoardSize) % BoardSize;
-            //        Cell cell2 = Cells[row2, column2];
+                    // Get cell at index2
+                    int row2 = index2 / BoardSize;
+                    int column2 = (index2 - row2 * BoardSize) % BoardSize;
+                    Cell cell2 = Cells[row2, column2];
 
+                    // Swap
+                    Cells[row1,column1] = cell2 ?? new Cell(row1, column1);
+                    cell2?.SetRowAndColumn(row1, column1);
 
-            //    }
-            //}
+                    Cells[row2,column2] = cell1;
+                    cell1?.SetRowAndColumn(row2, column2);
+                }
+            }
         }
 
         private void SetNumberedCells()
         {
+            foreach (var cellWithBomb in CellBombs)
+            {
+                var neighboors = cellWithBomb.GetNeighboors(BoardSize, Cells);
+                foreach (var neighboor in neighboors)
+                {
+                    neighboor.IncreaseNumberOfSurroudingBombs();
+                }
+            }
+        }
 
+        public string GetBoardAsString()
+        {
+            StringBuilder cells = new();
+
+            for (int row = 0; row < BoardSize; row++)
+            {
+                if (row != 0)
+                {
+                    cells.Append("| ");
+                }
+
+                for (int column = 0; column < BoardSize; column++)
+                {
+                    Cell cell = Cells[row, column];
+                    cells.Append(cell.CellType.ToShortString(cell));
+                }
+            }
+
+            return cells.ToString();
         }
     }
 }

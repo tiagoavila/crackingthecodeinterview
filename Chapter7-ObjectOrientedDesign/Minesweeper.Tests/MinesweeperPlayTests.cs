@@ -26,6 +26,8 @@ namespace Minesweeper.Tests
         {
             board.InitializeBoard();
             Assert.IsNotNull(board);
+
+            var result = board.GetBoardAsString();
         }
     }
 }
