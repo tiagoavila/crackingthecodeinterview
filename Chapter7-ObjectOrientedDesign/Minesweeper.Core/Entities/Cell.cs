@@ -1,4 +1,5 @@
 ﻿using Minesweeper.Core.Enums;
+using Minesweeper.Core.ValueObjects;
 
 namespace Minesweeper.Core
 {
@@ -17,7 +18,6 @@ namespace Minesweeper.Core
             IsBomb = isBomb;
         }
 
-        private readonly (int rowDisplacement, int columnDisplacement)[] _neighboorsPosition = new[] { (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1) };
         public int Row { get; private set; }
         public int Column { get; private set; }
         public CellTypeEnum CellType => IsBomb ? CellTypeEnum.Bomb : NumberOfSurroudingBombs > 0 ? CellTypeEnum.Number : CellTypeEnum.Blank;
@@ -54,20 +54,33 @@ namespace Minesweeper.Core
 
         public IEnumerable<Cell> GetNeighboors(int boardSize, Cell[,] cells)
         {
-            List<Cell> neighboors = new(_neighboorsPosition.Length);
+            List<Cell> neighboors = new(NeighboorsPosition.NeighboorsDisplacement.Length);
 
-            foreach (var (rowDisplacement, columnDisplacement) in _neighboorsPosition)
+            foreach (var (rowDisplacement, columnDisplacement) in NeighboorsPosition.NeighboorsDisplacement)
             {
                 int neighboorRow = Row + rowDisplacement;
                 int neighboorColumn = Column + columnDisplacement;
 
-                if (neighboorRow >= 0 && neighboorRow < boardSize && neighboorColumn >= 0 && neighboorColumn < boardSize)
+                if (IsNeighboorInBounds(boardSize, neighboorRow, neighboorColumn))
                 {
                     neighboors.Add(cells[neighboorRow, neighboorColumn]);
                 }
             }
 
             return neighboors;
+        }
+
+        public string ToShortString() => CellType switch
+        {
+            CellTypeEnum.Blank => "-",
+            CellTypeEnum.Number => NumberOfSurroudingBombs.ToString(),
+            CellTypeEnum.Bomb => "*",
+            _ => string.Empty
+        };
+
+        public bool IsNeighboorInBounds(int boardSize, int neighboorRow, int neighboorColumn)
+        {
+            return neighboorRow >= 0 && neighboorRow < boardSize && neighboorColumn >= 0 && neighboorColumn < boardSize;
         }
     }
 }

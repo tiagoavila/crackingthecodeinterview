@@ -1,9 +1,6 @@
 ﻿using Minesweeper.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Minesweeper.Core.ValueObjects;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Minesweeper.Core.Entities
 {
@@ -15,13 +12,15 @@ namespace Minesweeper.Core.Entities
             NumberOfBombs = numberOfBombs;
             Cells = new Cell[boardSize, boardSize];
             CellBombs = new List<Cell>(numberOfBombs);
+            NumberOfExposedCells = 0;
         }
 
         public int BoardSize { get; private set; }
         public int NumberOfBombs { get; private set; }
         public Cell[,] Cells { get; private set; }
         public ICollection<Cell> CellBombs { get; private set; }
-        
+        public int NumberOfExposedCells { get; private set; }
+        private int NumberOfCells => BoardSize * BoardSize;
 
         public void InitializeBoard()
         {
@@ -31,10 +30,8 @@ namespace Minesweeper.Core.Entities
 
         private void PlaceBombs()
         {
-            int numberOfCells = BoardSize * BoardSize;
-
             // Place bombs on the first N cells, where N is the value of the property NumberOfBombs
-            for (int index = 0; index < numberOfCells; index++)
+            for (int index = 0; index < NumberOfCells; index++)
             {
                 int row = index / BoardSize;
                 int column = (index - row * BoardSize) % BoardSize;
@@ -52,9 +49,9 @@ namespace Minesweeper.Core.Entities
             Random random = new();
 
             //Swap all the cells in the board
-            for (int index1 = 0; index1 < numberOfCells; index1++)
+            for (int index1 = 0; index1 < NumberOfCells; index1++)
             {
-                int index2 = index1 + random.Next(numberOfCells - index1);
+                int index2 = index1 + random.Next(NumberOfCells - index1);
                 if (index1 != index2)
                 {
                     // Get cell at index1
@@ -103,11 +100,71 @@ namespace Minesweeper.Core.Entities
                 for (int column = 0; column < BoardSize; column++)
                 {
                     Cell cell = Cells[row, column];
-                    cells.Append(cell.CellType.ToShortString(cell));
+                    cells.Append(cell.ToShortString());
                 }
             }
 
             return cells.ToString();
+        }
+
+        public UserPlayResult Play(UserPlay userPlay)
+        {
+            Cell cell = Cells[userPlay.Row, userPlay.Column];
+
+            if (userPlay.IsGuess)
+            {
+                cell.MarkAsGuess();
+                return new UserPlayResult(true, GameStateEnum.StillAlive);
+            }
+            else
+            {
+                cell.MarkAsExposed();
+                NumberOfExposedCells++;
+
+                switch (cell.CellType)
+                {
+                    case CellTypeEnum.Bomb:
+                        return new UserPlayResult(false, GameStateEnum.GameOver);
+
+                    case CellTypeEnum.Blank:
+                        ExpandBlankRegion(cell);
+                        break;
+                }
+
+                if (NumberOfExposedCells == NumberOfCells - NumberOfBombs)
+                {
+                    return new UserPlayResult(true, GameStateEnum.Won);
+                }
+
+                return new UserPlayResult(true, GameStateEnum.StillAlive);
+            }
+        }
+
+        public void ExpandBlankRegion(Cell cell)
+        {
+            Queue<Cell> toExplore = new();
+            toExplore.Enqueue(cell);
+
+            while (toExplore.Count > 0)
+            {
+                Cell current = toExplore.Dequeue();
+
+                foreach (var (rowDisplacement, columnDisplacement) in NeighboorsPosition.NeighboorsDisplacement)
+                {
+                    int neighboorRow = current.Row + rowDisplacement;
+                    int neighboorColumn = current.Column + columnDisplacement;
+
+                    if (current.IsNeighboorInBounds(BoardSize, neighboorRow, neighboorColumn))
+                    {
+                        Cell neighboor = Cells[neighboorRow, neighboorColumn];
+                        neighboor.MarkAsExposed();
+                        if (neighboor.CellType == CellTypeEnum.Blank)
+                        {
+                            toExplore.Enqueue(neighboor);
+                        }
+                    }
+                }
+            }
         }
     }
 }
