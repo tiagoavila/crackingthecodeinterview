@@ -157,11 +157,13 @@ namespace Minesweeper.Core.Entities
                     if (current.IsNeighboorInBounds(BoardSize, neighboorRow, neighboorColumn))
                     {
                         Cell neighboor = Cells[neighboorRow, neighboorColumn];
-                        neighboor.MarkAsExposed();
-                        if (neighboor.CellType == CellTypeEnum.Blank)
+                        
+                        if (neighboor.CellType == CellTypeEnum.Blank && neighboor.IsExposed == false)
                         {
                             toExplore.Enqueue(neighboor);
                         }
+
+                        neighboor.MarkAsExposed();
                     }
                 }
             }
