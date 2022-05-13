@@ -17,7 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Minesweeper", "Minesweeper"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Core", "Minesweeper.Core\Minesweeper.Core.csproj", "{DDDF5E20-73BA-4E38-BDD1-6E59D54EA20D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.Tests", "Minesweeper.Tests\Minesweeper.Tests.csproj", "{64A458A4-BE11-42E2-B8D2-0E311FE5BD04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Tests", "Minesweeper.Tests\Minesweeper.Tests.csproj", "{64A458A4-BE11-42E2-B8D2-0E311FE5BD04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HashTable", "HashTable", "{78502E75-3A34-4CC7-A7D3-37247CECC709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable.Core", "HashTable.Core\HashTable.Core.csproj", "{B6FF7300-5625-4105-BDF5-333AE406C967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable.Tests", "HashTable.Tests\HashTable.Tests.csproj", "{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,14 @@ Global
 		{64A458A4-BE11-42E2-B8D2-0E311FE5BD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A458A4-BE11-42E2-B8D2-0E311FE5BD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A458A4-BE11-42E2-B8D2-0E311FE5BD04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FF7300-5625-4105-BDF5-333AE406C967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FF7300-5625-4105-BDF5-333AE406C967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FF7300-5625-4105-BDF5-333AE406C967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FF7300-5625-4105-BDF5-333AE406C967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +69,8 @@ Global
 		{FA042363-FC25-4C4A-8A47-2EB3BC930524} = {C45011E4-9268-4B78-9E3C-0F5134E87B9C}
 		{DDDF5E20-73BA-4E38-BDD1-6E59D54EA20D} = {B1B9AE47-C641-48A6-877C-E2CD21D00BAC}
 		{64A458A4-BE11-42E2-B8D2-0E311FE5BD04} = {B1B9AE47-C641-48A6-877C-E2CD21D00BAC}
+		{B6FF7300-5625-4105-BDF5-333AE406C967} = {78502E75-3A34-4CC7-A7D3-37247CECC709}
+		{A6789D4C-D36E-4B54-A6C2-84E1BB5F3C04} = {78502E75-3A34-4CC7-A7D3-37247CECC709}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE75AB06-F514-4D97-8BBB-6ABB4DBECCE2}
