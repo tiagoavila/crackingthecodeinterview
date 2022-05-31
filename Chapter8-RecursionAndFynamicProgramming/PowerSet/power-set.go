@@ -11,7 +11,7 @@ func getSubsets(set []int, index int) [][]int {
 		allSubsets = getSubsets(set, index+1)
 		var item int = set[index]
 		var moresubsets [][]int
-		for i := 0; i < len(allSubsets); i++ {
+		for i := 0; i < len(allSubsets); i++ { // Clone the subsets and add the current element from the original set to the existing subsets
 			var newSubset []int
 			newSubset = append(newSubset, allSubsets[i]...)
 			newSubset = append(newSubset, item)
@@ -24,5 +24,5 @@ func getSubsets(set []int, index int) [][]int {
 }
 
 func main() {
-	fmt.Println("subsets of set {1, 2, 3}: %d", getSubsets([]int{1, 2, 3}, 0))
+	fmt.Println("subsets of set {1, 2, 3}: ", getSubsets([]int{1, 2, 3}, 0))
 }
